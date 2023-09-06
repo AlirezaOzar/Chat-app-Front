@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import { useContext, useRef } from "react";
 import { loginCall } from "../../hooks/ApiCalls";
@@ -9,6 +9,7 @@ export default function Login() {
   const email = useRef();
   const password = useRef();
   const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -16,6 +17,7 @@ export default function Login() {
       { email: email.current.value, password: password.current.value },
       dispatch
     );
+    navigate("/");
   };
 
   console.log(user);
